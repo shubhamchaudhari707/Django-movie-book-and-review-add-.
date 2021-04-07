@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    padding: 0;
+    
+    
+}
+.movie{
+    margin-top: 50%;
+    color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.msg{
+    color: red;
+}
+
+
+
+
+.contianer-fluid{
+    background-color:blue;
+}
+
+
+ .category{
+    padding-left: 50px;
+    
+
+}
+
+.view{
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+    border: 2px solid red;
+    border-radius: 10px; 
+    width: 80%;
+    margin: auto;
+    margin-top: 70px;
+    padding: 30px;
+} 
+
+a{
+    text-decoration: none !important;
+
+}
+

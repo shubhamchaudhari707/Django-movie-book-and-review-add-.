@@ -1,0 +1,167 @@
+{% extends "testapp/base.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-md-7">
+            <div class="container shadow-lg pt-5 mt-5 pb-5 bg-white rounded">
+                <h1 class="text-center">My Movies <a class="btn btn-success ml-5" href="{% url 'movies' %}"
+                        role="button">Add Movies</a>
+                </h1>
+
+                {% if movie %}
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Year_Of_Production</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movie in movie %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{movie.title}}</td>
+                            <td>{{movie.year_of_production}}</td>
+                            <td>
+                                <a href="{% url 'totalbookings' movie.id %}" class="btn btn-warning btn-sm">Manage</a>
+
+                                <a href="{% url 'updatemovies' movie.id %}" class="btn btn-warning btn-sm">Edit</a>
+
+                                <form action="{% url 'delete' movie.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                                </form>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                <h4 class="text-center alert alert-info">No Record Information</h4>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="col-md-5">
+
+            <div class="row">
+                <div class="col-md-12 mt-5 shadow-lg bg-white rounded">
+                    <h3 class="text-center">My Categorie <a class="btn btn-success ml-5" href="{% url 'category' %}"
+                            role="button">Add
+                            Categorie</a> </h3>
+                    {% if categories %}
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Categories</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for categories in categories %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{categories.category}}</td>
+                                <td>
+                                    <a href="{% url 'updatecategory' categories.id  %}"
+                                        class="btn btn-warning btn-sm">Edit</a>
+
+                                    <form action="{% url 'deletecategory' categories.id %}" method="post"
+                                        class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                                    </form>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% else %}
+                    <h4 class="text-center alert alert-info">No Record Information</h4>
+                    {% endif %}
+
+                </div>
+                <hr>
+
+
+                <div class="col-md-12 shadow-lg mt-4 bg-white rounded">
+                    <h3 class="text-center">My Languages <a class="btn btn-success ml-5" href="{% url 'language' %}"
+                            role="button">Add
+                            Languages</a> </h3>
+                    {% if languages %}
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Languages</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for languages in languages %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{languages.language}}</td>
+                                <td>
+                                    <a href="{% url 'updatelanguage' languages.id  %}"
+                                        class="btn btn-warning btn-sm">Edit</a>
+
+                                    <form action="{% url 'deletelanguage' languages.id %}" method="post"
+                                        class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                                    </form>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% else %}
+                    <h4 class="text-center alert alert-info">No Record Information</h4>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

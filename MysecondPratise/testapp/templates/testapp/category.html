@@ -1,0 +1,22 @@
+{% extends "testapp/base.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="shadow-lg mt-5  p-5 bg-white rounded">
+        <form method="POST" class="mt-5">
+            {% csrf_token %}
+            <div class="form-group">
+                <h1>Add Category</h1>
+                <label for="">Category</label>
+                <input type="text" class="form-control" id="" name="category" required value="{{data.category}}">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Add Category</button>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

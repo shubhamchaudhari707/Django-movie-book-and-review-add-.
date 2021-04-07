@@ -1,0 +1,85 @@
+{% extends "testapp/base.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="container shadow-lg mt-5 pt-2 bg-white rounded">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" class="form-control" id="" required name="title" value="{{movies.title}}">
+            </div>
+
+            <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" class="form-control" id="" required name="description"
+                    value="{{movies.description}}">
+            </div>
+
+            <div class="form-group">
+                <label for="">Image</label><br>
+                {% if movies %}
+                <a href="/media/{{movies.image}}" target="__blank">view image</a>
+                {% else %}
+                <input type="file" id="" required name="image" value="{{movies.image}}">
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="">Category</label>
+                <select name="category">
+                    {% for categorie in categories %}
+                    <option value="{{ categorie.id }}">
+                        {{categorie}}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label for="">Langues</label>
+                <select name="languages">
+                    {% for language in languages %}
+
+                    <option value="{{language.id}}">
+                        {{language}}</option>
+
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label for="">Cast</label>
+                <input type="text" class="form-control" id="" required name="cast" value="{{movies.cast}}">
+            </div>
+
+            <div class="form-group">
+                <label for="">Year_Of_Production {{movies.year_of_production}}</label>
+                <input type="date" class="form-control" id="" required name="year_of_production"
+                    value="{{movies.year_of_production|date:'Y-m-d'}}">
+            </div>
+
+            <div class="form-group">
+                <label for="">slug</label>
+                <input type="text" class="form-control" id="" required name="slug" value="{{movies.slug}}">
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input type="text" class="form-control" id="" required name="price" value="{{movies.price}}">
+            </div>
+
+
+
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

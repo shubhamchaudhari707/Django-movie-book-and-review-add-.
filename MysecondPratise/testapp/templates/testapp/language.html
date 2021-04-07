@@ -1,0 +1,22 @@
+{% extends "testapp/base.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="shadow-lg mt-5  p-5 bg-white rounded">
+        <form method="POST" class="mt-5">
+            {% csrf_token %}
+            <div class="form-group">
+                <h1>Add Language</h1>
+                <label for="">Language</label>
+                <input type="text" class="form-control" id="" name="languages" required value="{{data.language}}">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Add Language</button>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends "testapp/base.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<div class="view">
+    <div class="container-sm" style="display: flex;">
+
+        <div class="image">
+            <img src="{{movie.image.url}}" alt="photo" height="300" width="200">
+
+
+        </div>
+
+        <div class="category">
+
+            <h1 style="color: red;">{{movie.title}}</h1>
+            <p>{{movie.description}}</p>
+            <p>Category : {{movie.category}} </p>
+            <p>Langues : {{movie.language}}</p>
+            <p> Cast : {{movie.cast}} </p>
+            <p>Year_Of_Production : {{movie.year_of_production}}</p>
+            <p>Price : {{movie.price}}</p>
+
+            <form action="/bookmovie/{{movie.id}}/" method="post">
+                {% csrf_token %}
+                <input type='date' name="booking_date" required>
+                <button type="submit" class="btn btn-primary">Book Now</button>
+                <br>
+                {% if messages %}
+                {% for message in messages %}
+                <span class="msg">{{message}}</span>
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h3>Reviews</h3>
+            <form method="POST" action="/reviews_add/{{movie.id}}/">
+                {% csrf_token %}
+                <label for="rating">Rating</label>
+                <input type="number" class="form-control" id="rating" name="rating">
+
+                <label for="">Reviews</label>
+                <textarea name="reviews" id="reviews" cols="30" rows="5" class="form-control"></textarea>
+
+                <br>
+                <input type="submit" class="btn btn-danger" value="Add Reviews">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
